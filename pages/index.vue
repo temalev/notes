@@ -8,14 +8,21 @@
       <div class="rightContainer">
         <note v-for="note in notes" :key="`note_${note}`" :note="note" />
       </div>
+      {{ uuid }}
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'IndexPage',
+  data() {
+    return {
+      uuid: this.$uuid.v4()
+    }
+  },
   computed: {
     ...mapGetters('notes', ['notes'])
   }
