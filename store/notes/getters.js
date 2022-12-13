@@ -1,3 +1,3 @@
 export default {
-  notes: state => state.notes,
+  arrNotes: (state) => state.arrNotes
 }

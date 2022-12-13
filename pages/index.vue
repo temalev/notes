@@ -6,9 +6,11 @@
         <formNotes />
       </div>
       <div class="rightContainer">
-        <note v-for="note in notes" :key="`note_${note}`" :note="note" />
+        <div v-if="arr.length" class="notesContainer">
+          <note v-for="(note, id) in arr" :key="`note_${id}`" :note="note" />
+        </div>
+        <span v-else class="message">Добавьте заметку</span>
       </div>
-      {{ uuid }}
     </div>
   </div>
 </template>
@@ -19,12 +21,18 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'IndexPage',
   data() {
-    return {
-      uuid: this.$uuid.v4()
-    }
+    return {}
   },
+
   computed: {
-    ...mapGetters('notes', ['notes'])
+    ...mapGetters('notes', ['arrNotes']),
+
+    arr: {
+      get() {
+        return this.arrNotes
+      },
+      set() {}
+    }
   }
 }
 </script>
@@ -51,6 +59,13 @@ export default {
   display: flex;
   gap: 20px;
   width: 70%;
+  height: 100%;
+  flex-flow: wrap;
+}
+.notesContainer {
+  display: flex;
+  gap: 20px;
+  width: 100%;
   height: 100%;
   flex-flow: wrap;
 }

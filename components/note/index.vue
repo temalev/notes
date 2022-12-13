@@ -8,10 +8,11 @@
     </div>
     <div class="buttonsContainer">
       <basicButton
-        v-for="btn in buttons"
-        :key="`button_${btn}`"
+        v-for="(btn, idBtn) in buttons"
+        :key="`button_${idBtn}`"
         :add-class="btn.class"
         :action-btn="btn.action"
+        @isAction="actionNote"
       >
         <template slot="text">{{ btn.name }}</template>
       </basicButton>
@@ -19,6 +20,8 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'BasicNote',
   props: {
@@ -33,6 +36,19 @@ export default {
         { name: 'Открыть', action: 'open', class: 'mainAction' },
         { name: 'Удалить', action: 'delete', class: 'supportAction' }
       ]
+    }
+  },
+  computed: {
+    ...mapGetters('notes', ['notes'])
+  },
+  methods: {
+    actionNote(action) {
+      if (action === 'deleteNote') {
+        const newNotes = this.notes.filter(
+          (note) => note.uuid !== this.note.uuid
+        )
+        this.$store.commit('notes/notes', newNotes)
+      }
     }
   }
 }

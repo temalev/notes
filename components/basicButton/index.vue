@@ -1,5 +1,5 @@
 <template>
-  <div class="mainBtn">
+  <div class="mainBtn" @click="isAction">
     <div :class="addClass">
       <slot name="text" />
     </div>
@@ -16,6 +16,20 @@ export default {
     actionBtn: {
       type: String,
       default: ''
+    }
+  },
+  methods: {
+    add() {
+      console.log('hi')
+    },
+    isAction() {
+      if (this.actionBtn === 'addNote') {
+        this.$emit('isAction', 'addNote')
+      } else if (this.actionBtn === 'delete') {
+        this.$emit('isAction', 'deleteNote')
+      } else if (this.actionBtn === 'open') {
+        this.$emit('isAction', 'openNote')
+      }
     }
   }
 }

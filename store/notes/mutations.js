@@ -1,5 +1,8 @@
 export default {
-  notes (state, notes) {
-    state.notes = notes
+  arrNotes(state, arrNotes) {
+    state.arrNotes = arrNotes
   },
+  createNote(state, newNotes) {
+    state.arrNotes.unshift(newNotes)
+  }
 }
