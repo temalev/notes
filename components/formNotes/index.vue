@@ -34,20 +34,20 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['createNote']),
+    ...mapMutations('notes', ['createNote']),
 
     addNote() {
-      //   this.createNote({
-      //     uuid: this.$uuid.v4(),
-      //     title: this.formData.title,
-      //     description: this.formData.description
-      //   })
-      const newArr = {
+      this.createNote({
         uuid: this.$uuid.v4(),
         title: this.formData.title,
         description: this.formData.description
-      }
-      this.$store.dispatch('notes/addNote', newArr)
+      })
+      // const newArr = {
+      //   uuid: this.$uuid.v4(),
+      //   title: this.formData.title,
+      //   description: this.formData.description
+      // }
+      // this.$store.dispatch('notes/addNote', newArr)
     },
 
     setValue(value) {
