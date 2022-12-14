@@ -1,8 +1,11 @@
 <template>
   <div class="mainForm">
     <form action="" class="formsContainer">
-      <basicInput @updateValue="setValue" />
-      <basicTextfield @updateValue="setValueTextField" />
+      <basicInput :value-input="formData.title" @updateValue="setValue" />
+      <basicTextfield
+        :value-input="formData.description"
+        @updateValue="setValueTextField"
+      />
     </form>
 
     <basicButton
@@ -37,17 +40,16 @@ export default {
     ...mapMutations('notes', ['createNote']),
 
     addNote() {
-      this.createNote({
-        uuid: this.$uuid.v4(),
-        title: this.formData.title,
-        description: this.formData.description
-      })
-      // const newArr = {
-      //   uuid: this.$uuid.v4(),
-      //   title: this.formData.title,
-      //   description: this.formData.description
-      // }
-      // this.$store.dispatch('notes/addNote', newArr)
+      if (this.formData.title || this.formData.description) {
+        this.createNote({
+          uuid: this.$uuid.v4(),
+          title: this.formData.title,
+          description: this.formData.description
+        })
+
+        this.formData.title = null
+        this.formData.description = null
+      }
     },
 
     setValue(value) {

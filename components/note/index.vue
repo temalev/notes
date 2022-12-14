@@ -39,15 +39,22 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('notes', ['notes'])
+    ...mapGetters('notes', ['arrNotes'])
   },
   methods: {
     actionNote(action) {
       if (action === 'deleteNote') {
-        const newNotes = this.notes.filter(
+        const newNotes = this.arrNotes.filter(
           (note) => note.uuid !== this.note.uuid
         )
-        this.$store.commit('notes/notes', newNotes)
+        this.$store.commit('notes/arrNotes', newNotes)
+      }
+      if (action === 'openNote') {
+        this.$router.push({
+          path: `/note?uuid=${this.note.uuid}`
+        })
+        this.$store.commit('notes/note', this.note)
+        localStorage.setItem('note', JSON.stringify(this.note))
       }
     }
   }
@@ -74,6 +81,13 @@ export default {
 h4 {
   font-size: 20px;
   padding: 0;
+}
+.textNote {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .buttonsContainer {
   display: flex;

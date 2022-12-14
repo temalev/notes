@@ -21,17 +21,35 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'IndexPage',
   data() {
-    return {}
+    return {
+      localNotes: []
+    }
   },
-
   computed: {
     ...mapGetters('notes', ['arrNotes']),
 
-    arr: {
-      get() {
-        return this.arrNotes
-      },
-      set() {}
+    arr() {
+      return this.arrNotes
+    },
+
+    arrLength() {
+      return this.arrNotes.length
+    }
+  },
+
+  watch: {
+    arrLength(newCount, oldCount) {
+      if (newCount !== oldCount) {
+        localStorage.setItem('notes', JSON.stringify(this.arrNotes))
+
+        this.$store.commit('notes/arrNotes', JSON.parse(localStorage.notes))
+      }
+    }
+  },
+
+  mounted() {
+    if (localStorage.notes) {
+      this.$store.commit('notes/arrNotes', JSON.parse(localStorage.notes))
     }
   }
 }

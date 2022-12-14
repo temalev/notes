@@ -7,11 +7,14 @@
 <script>
 export default {
   name: 'BasicInput',
-  props: {},
-  data() {
-    return {
-      inputValue: null
+  props: {
+    valueInput: {
+      type: String,
+      default: ''
     }
+  },
+  data() {
+    return {}
   },
   computed: {
     model: {

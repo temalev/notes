@@ -4,5 +4,8 @@ export default {
   },
   createNote(state, newNotes) {
     state.arrNotes.unshift(newNotes)
+  },
+  note(state, note) {
+    state.note = note
   }
 }
