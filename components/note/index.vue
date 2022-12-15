@@ -19,17 +19,20 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'BasicNote',
+
   props: {
     note: {
       type: Object,
       default: () => {}
     }
   },
+
   data() {
     return {
       buttons: [
@@ -38,9 +41,11 @@ export default {
       ]
     }
   },
+
   computed: {
     ...mapGetters('notes', ['arrNotes'])
   },
+
   methods: {
     actionNote(action) {
       if (action === 'deleteNote') {
@@ -54,6 +59,7 @@ export default {
           path: `/note?uuid=${this.note.uuid}`
         })
         this.$store.commit('notes/note', this.note)
+
         localStorage.setItem('note', JSON.stringify(this.note))
       }
     }

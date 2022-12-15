@@ -9,6 +9,7 @@
         <div v-if="arr.length" class="notesContainer">
           <note v-for="(note, id) in arr" :key="`note_${id}`" :note="note" />
         </div>
+
         <span v-else class="message">Добавьте заметку</span>
       </div>
     </div>
@@ -20,11 +21,13 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'IndexPage',
+
   data() {
     return {
       localNotes: []
     }
   },
+
   computed: {
     ...mapGetters('notes', ['arrNotes']),
 
@@ -54,6 +57,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .mainContainer {
   display: flex;

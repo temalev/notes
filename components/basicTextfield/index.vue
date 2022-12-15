@@ -4,18 +4,22 @@
     <textarea v-model="model" name=""></textarea>
   </div>
 </template>
+
 <script>
 export default {
   name: 'BasicTextfield',
+
   props: {
     valueInput: {
       type: String,
       default: ''
     }
   },
+
   data() {
     return {}
   },
+
   computed: {
     model: {
       get() {
@@ -28,6 +32,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .mainBasicTextfield {
   display: flex;

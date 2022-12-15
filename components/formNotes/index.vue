@@ -32,6 +32,7 @@ export default {
       }
     }
   },
+
   computed: {
     ...mapGetters('notes', ['arrNotes'])
   },

@@ -7,10 +7,13 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
   name: 'Note',
+
   computed: {
     ...mapGetters('notes', ['note'])
   },
@@ -19,6 +22,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .mainNote {
   display: flex;

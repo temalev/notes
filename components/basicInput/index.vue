@@ -4,18 +4,22 @@
     <input v-model="model" type="text" />
   </div>
 </template>
+
 <script>
 export default {
   name: 'BasicInput',
+
   props: {
     valueInput: {
       type: String,
       default: ''
     }
   },
+
   data() {
     return {}
   },
+
   computed: {
     model: {
       get() {
@@ -28,6 +32,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .mainBasicInput {
   display: flex;

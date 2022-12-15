@@ -5,23 +5,28 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   name: 'BasicButton',
+
   props: {
     addClass: {
       type: String,
       default: ''
     },
+
     actionBtn: {
       type: String,
       default: ''
     }
   },
+
   methods: {
     add() {
       console.log('hi')
     },
+
     isAction() {
       if (this.actionBtn === 'addNote') {
         this.$emit('isAction', 'addNote')
@@ -34,6 +39,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .mainBtn {
   cursor: pointer;
